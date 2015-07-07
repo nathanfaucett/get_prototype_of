@@ -1,5 +1,6 @@
 var isObject = require("is_object"),
-    isNative = require("is_native");
+    isNative = require("is_native"),
+    isNullOrUndefined = require("is_null_or_undefined");
 
 
 var nativeGetPrototypeOf = Object.getPrototypeOf;
@@ -9,7 +10,7 @@ module.exports = getPrototypeOf;
 
 
 function getPrototypeOf(obj) {
-    return obj == null ? null : nativeGetPrototypeOf(
+    return isNullOrUndefined(obj) ? null : nativeGetPrototypeOf(
         (isObject(obj) ? obj : Object(obj))
     );
 }

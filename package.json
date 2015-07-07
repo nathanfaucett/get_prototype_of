@@ -7,6 +7,9 @@
     "url": "https://github.com/nathanfaucett/get_prototype_of.git"
   },
   "main": "src/index.js",
+  "scripts": {
+    "test": "mocha"
+  },
   "keywords": [
     "get_prototype_of",
     "get_prototype_of.js"
@@ -21,7 +24,8 @@
     "mocha": "^2.1.0"
   },
   "dependencies": {
-    "is_object": "nathanfaucett/is_object",
-    "is_native": "nathanfaucett/is_native"
+    "is_native": "nathanfaucett/is_native",
+    "is_null_or_undefined": "git://github.com/nathanfaucett/is_null_or_undefined.git",
+    "is_object": "nathanfaucett/is_object"
   }
 }
