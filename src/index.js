@@ -3,22 +3,37 @@ var isObject = require("is_object"),
     isNullOrUndefined = require("is_null_or_undefined");
 
 
-var nativeGetPrototypeOf = Object.getPrototypeOf;
+var nativeGetPrototypeOf = Object.getPrototypeOf,
+    baseGetPrototypeOf;
 
 
 module.exports = getPrototypeOf;
 
 
-function getPrototypeOf(obj) {
-    return isNullOrUndefined(obj) ? null : nativeGetPrototypeOf(
-        (isObject(obj) ? obj : Object(obj))
-    );
+function getPrototypeOf(value) {
+    if (isNullOrUndefined(value)) {
+        return null;
+    } else {
+        return baseGetPrototypeOf(value);
+    }
 }
 
-if (!isNative(nativeGetPrototypeOf)) {
-    nativeGetPrototypeOf = function getPrototypeOf(obj) {
-        return obj.__proto__ || (
-            obj.constructor ? obj.constructor.prototype : null
-        );
+if (isNative(nativeGetPrototypeOf)) {
+    baseGetPrototypeOf = function baseGetPrototypeOf(value) {
+        if (isObject(value)) {
+            return nativeGetPrototypeOf(value);
+        } else {
+            return nativeGetPrototypeOf(Object(value));
+        }
     };
+} else {
+    if (isObject("".__proto__)) {
+        baseGetPrototypeOf = function baseGetPrototypeOf(value) {
+            return value.__proto__ || null;
+        };
+    } else {
+        baseGetPrototypeOf = function baseGetPrototypeOf(value) {
+            return value.constructor ? value.constructor.prototype : null;
+        };
+    }
 }
