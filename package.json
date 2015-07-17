@@ -8,7 +8,10 @@
   },
   "main": "src/index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "npm run test-node",
+    "test-node": "node ./test | ./node_modules/.bin/tap-spec",
+    "test-node-raw": "node ./test",
+    "test-browser-local": "zuul --local 8080 --ui tape -- ./test"
   },
   "keywords": [
     "get_prototype_of",
@@ -21,7 +24,9 @@
     "grunt": "^0.4.5",
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-jsbeautifier": "^0.2.7",
-    "mocha": "^2.1.0"
+    "tap-spec": "^4.0.0",
+    "tape": "^4.0.0",
+    "zuul": "^3.0.0"
   },
   "dependencies": {
     "is_native": "nathanfaucett/is_native",
