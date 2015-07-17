@@ -20,14 +20,10 @@ function getPrototypeOf(value) {
 
 if (isNative(nativeGetPrototypeOf)) {
     baseGetPrototypeOf = function baseGetPrototypeOf(value) {
-        if (isObject(value)) {
-            return nativeGetPrototypeOf(value);
-        } else {
-            return nativeGetPrototypeOf(Object(value));
-        }
+        return nativeGetPrototypeOf(isObject(value) ? value : Object(value)) || null;
     };
 } else {
-    if (isObject("".__proto__)) {
+    if ("".__proto__ === String.prototype) {
         baseGetPrototypeOf = function baseGetPrototypeOf(value) {
             return value.__proto__ || null;
         };
