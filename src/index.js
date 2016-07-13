@@ -1,6 +1,6 @@
-var isObject = require("is_object"),
-    isNative = require("is_native"),
-    isNullOrUndefined = require("is_null_or_undefined");
+var isObject = require("@nathanfaucett/is_object"),
+    isNative = require("@nathanfaucett/is_native"),
+    isNullOrUndefined = require("@nathanfaucett/is_null_or_undefined");
 
 
 var nativeGetPrototypeOf = Object.getPrototypeOf,
